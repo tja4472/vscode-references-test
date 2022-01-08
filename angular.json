@@ -1,6 +1,32 @@
 {
   "version": 1,
   "projects": {
+    "my-library": {
+      "projectType": "library",
+      "root": "libs/my-library",
+      "sourceRoot": "libs/my-library/src",
+      "prefix": "my-workspace-vscode",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/my-library"],
+          "options": {
+            "jestConfig": "libs/my-library/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/my-library/src/**/*.ts",
+              "libs/my-library/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "vscode-references-test": {
       "projectType": "application",
       "root": "apps/vscode-references-test",
