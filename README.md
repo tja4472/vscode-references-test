@@ -1,105 +1,100 @@
+- [vscode-references-test](#vscode-references-test)
+  - [Install Nx globally](#install-nx-globally)
+  - [Create workspace with an Angular app](#create-workspace-with-an-angular-app)
+  - [Change folder](#change-folder)
+  - [Add library](#add-library)
+  - [Add data.ts](#add-datats)
+  - [Update index.ts](#update-indexts)
+  - [Update app.module.ts](#update-appmodulets)
+  - [Update app.component.ts](#update-appcomponentts)
 
+# vscode-references-test
 
-# MyWorkspaceVscode
+## Install Nx globally
 
-This project was generated using [Nx](https://nx.dev).
+```bash
+npm install nx --global
+```
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## Create workspace with an Angular app
 
-🔎 **Smart, Fast and Extensible Build System**
+```bash
+npx create-nx-workspace@latest myWorkspaceVscode --preset angular --appName "vscode-references-test" --style "css" --nx-cloud false
+```
 
-## Quick Start & Documentation
+## Change folder
 
-[Nx Documentation](https://nx.dev/angular)
+```bash
+cd my-workspace-vscode
+```
 
-[10-minute video showing all Nx features](https://nx.dev/getting-started/intro)
+## Add library
 
-[Interactive Tutorial](https://nx.dev/tutorial/01-create-application)
+```bash
+nx generate @nrwl/angular:library --name=myLibrary
+```
 
-## Adding capabilities to your workspace
+## Add data.ts
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+libs>my-library>src>lib
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+```ts
+export interface Todo {
+  title: string;
+}
+```
 
-Below are our core plugins:
+## Update index.ts
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+libs>my-library>src>lib
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+```ts
+export * from './lib/my-library.module';
+export * from './lib/data';
+```
 
-## Generate an application
+## Update app.module.ts
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-> You can use any of the plugins above to generate applications as well.
+import { AppComponent } from './app.component';
+import { NxWelcomeComponent } from './nx-welcome.component';
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+import { MyLibraryModule } from '@my-workspace-vscode/my-library';
 
-## Generate a library
+@NgModule({
+  declarations: [AppComponent, NxWelcomeComponent],
+  imports: [BrowserModule, MyLibraryModule],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
+## Update app.component.ts
 
-> You can also use any of the plugins above to generate libraries as well.
+```ts
+import { Component } from '@angular/core';
+import { Todo } from '@my-workspace-vscode/my-library';
 
-Libraries are shareable across libraries and applications. They can be imported from `@my-workspace-vscode/mylib`.
+@Component({
+  selector: 'my-workspace-vscode-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent {
+  title = 'vscode-references-test';
 
-## Development server
+  todos: Todo[] = [{ title: 'Todo 1' }, { title: 'Todo 2' }];
+}
+```
 
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+- Open workspace with vscode with no editors open.
+- Open libs>my-library>src>lib>data.ts.
+- Right click on `Todo` and select `Find All References`.
+- Notice that `app.component.ts` is not in the results.
 
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-
-
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+Cannot find all references to shared lib's interfaces in VS Code
+https://github.com/nrwl/nx/issues/3106
