@@ -5,10 +5,11 @@
   - [Add library](#add-library)
   - [Add data.ts](#add-datats)
   - [Update index.ts](#update-indexts)
-  - [Update app.module.ts](#update-appmodulets)
   - [Update app.component.ts](#update-appcomponentts)
 
 # vscode-references-test
+
+- https://github.com/tja4472/vscode-references-test
 
 ## Install Nx globally
 
@@ -31,7 +32,7 @@ cd my-workspace-vscode
 ## Add library
 
 ```bash
-nx generate @nrwl/angular:library --name=myLibrary
+nx generate @nrwl/angular:library --name=myLibrary --skipModule
 ```
 
 ## Add data.ts
@@ -49,28 +50,7 @@ export interface Todo {
 libs>my-library>src>lib
 
 ```ts
-export * from './lib/my-library.module';
 export * from './lib/data';
-```
-
-## Update app.module.ts
-
-```ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-
-import { MyLibraryModule } from '@my-workspace-vscode/my-library';
-
-@NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule, MyLibraryModule],
-  providers: [],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
 ```
 
 ## Update app.component.ts
@@ -93,7 +73,7 @@ export class AppComponent {
 
 - Open workspace with vscode with no editors open.
 - Open libs>my-library>src>lib>data.ts.
-- Right click on `Todo` and select `Find All References`.
+- Right click on `Todo` and select 'Find All References'.
 - Notice that `app.component.ts` is not in the results.
 
 Cannot find all references to shared lib's interfaces in VS Code
