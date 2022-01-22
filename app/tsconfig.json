@@ -6,11 +6,15 @@
     "module": "CommonJS",
     "target": "ES6",
 
+    "outDir": "dist",
+
     "composite": true,
-    "rootDir": "src",
-    "outDir": "dist"
+    "rootDir": "src"
   },
   "include": [
     "src"
+  ],
+  "references": [
+    { "path": "../shared/tsconfig.json" }
   ]
 }

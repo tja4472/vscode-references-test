@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Todo } from '@my-workspace-vscode/my-library';
+import { foo, Todo } from '@my-workspace-vscode/my-library';
+
+foo.bar();
 
 @Component({
   selector: 'my-workspace-vscode-root',
