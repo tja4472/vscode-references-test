@@ -1,29 +1,18 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./tsconfig.editor.json"
-    }
-  ],
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
     "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+
+    "module": "CommonJS",
+    "target": "ES6",
+
+    "outDir": "dist",
+
+    "composite": true,
+    "rootDir": "src",
+
+    "experimentalDecorators": true
   },
-  "angularCompilerOptions": {
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+  "include": ["src"],
+  "references": [{ "path": "../../libs/my-library/tsconfig.json" }]
 }

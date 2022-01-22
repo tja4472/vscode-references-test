@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { foo, Todo } from '@my-workspace-vscode/my-library';
-
+// import { foo, Todo } from '@my-workspace-vscode/my-library';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import {foo, Todo } from '../../../../libs/my-library/src/'
 foo.bar();
 
 @Component({
