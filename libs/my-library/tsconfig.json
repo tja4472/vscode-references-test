@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "files": [],
-  "include": [],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.lib.json"
@@ -16,7 +16,9 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "composite": true,
+    "declaration": true,       
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
