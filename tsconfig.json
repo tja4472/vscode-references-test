@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
   "references": [
-    { "path": "apps/vscode-references-test" },
-    { "path": "libs/my-library" }
+    { "path": "./apps/vscode-references-test/tsconfig.json" }
   ]
 }

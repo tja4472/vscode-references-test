@@ -1,3 +1,6 @@
+Will not Start.
+Error: error TS6304: Composite projects may not disable declaration emit.
+
 - [vscode-references-test](#vscode-references-test)
   - [Install Nx globally](#install-nx-globally)
   - [Create workspace with an Angular app](#create-workspace-with-an-angular-app)
