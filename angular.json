@@ -27,6 +27,32 @@
       },
       "tags": []
     },
+    "shared-lib": {
+      "projectType": "library",
+      "root": "libs/shared-lib",
+      "sourceRoot": "libs/shared-lib/src",
+      "prefix": "my-workspace-vscode",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared-lib"],
+          "options": {
+            "jestConfig": "libs/shared-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared-lib/src/**/*.ts",
+              "libs/shared-lib/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "vscode-references-test": {
       "projectType": "application",
       "root": "apps/vscode-references-test",

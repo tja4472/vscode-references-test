@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@my-workspace-vscode/my-library": ["libs/my-library/src/index.ts"]
+      "@my-workspace-vscode/my-library": ["libs/my-library/src/index.ts"],
+      "@my-workspace-vscode/shared-lib": ["libs/shared-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
