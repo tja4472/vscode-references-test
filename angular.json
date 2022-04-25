@@ -9,11 +9,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/my-library"
-          ],
+          "outputs": ["coverage/libs/my-library"],
           "options": {
-            "jestConfig": "libs/my-library/jest.config.js",
+            "jestConfig": "libs/my-library/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -37,9 +35,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/vscode-references-test",
             "index": "apps/vscode-references-test/src/index.html",
@@ -50,9 +46,7 @@
               "apps/vscode-references-test/src/favicon.ico",
               "apps/vscode-references-test/src/assets"
             ],
-            "styles": [
-              "apps/vscode-references-test/src/styles.css"
-            ],
+            "styles": ["apps/vscode-references-test/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -117,11 +111,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/vscode-references-test"
-          ],
+          "outputs": ["coverage/apps/vscode-references-test"],
           "options": {
-            "jestConfig": "apps/vscode-references-test/jest.config.js",
+            "jestConfig": "apps/vscode-references-test/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -147,20 +139,14 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/vscode-references-test-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/vscode-references-test-e2e/**/*.{js,ts}"]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": [
-        "vscode-references-test"
-      ]
+      "implicitDependencies": ["vscode-references-test"]
     }
   }
 }
