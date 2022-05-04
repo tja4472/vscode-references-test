@@ -78,3 +78,6 @@ export class AppComponent {
 
 Cannot find all references to shared lib's interfaces in VS Code
 https://github.com/nrwl/nx/issues/3106
+
+fix(language-service): Add resource files as roots to their associate
+https://github.com/angular/angular/pull/45601
